@@ -73,15 +73,7 @@
 
 import { Entity, Column, BeforeInsert, JoinColumn,ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 import Encryption from 'src/core/utils/encryption';
-import { BaseModel } from 'src/core/database/BaseModel';
 import { Exclude } from 'class-transformer';
-import { TeamMember } from 'src/modules/team-member/entities/team-member.entity';
-
-import { Role } from 'src/modules/roles/entities/role.entity';
-import { Address } from 'src/modules/addresses/entities/address.entity';
-import { SocialLinks } from 'src/modules/social-links/entities/social-links.entity';
-import { Permission } from 'src/modules/permissions/entities/permission.entity';
-// import { Staff } from 'src/modules/StaffType/entities/staff.entity';
 
 @Entity({ name: 'users' })
 export default class User  {
@@ -96,8 +88,12 @@ export default class User  {
   @Column({ type: 'varchar', select: true })
   password: string;
 
-  @Column({ type: 'uuid' })
-  team_id: string;
+   @Column({ type: 'boolean', default: false })
+  is_delete: boolean;
+
+  @Column({ type: 'timestamp', nullable: true })
+  deleted_at?: Date;
+
   
   @BeforeInsert()
   async hashPassword() {
@@ -105,44 +101,6 @@ export default class User  {
       this.password = Encryption.hashPassword(this.password);
     }
   }
-
-
-    // team_id foreign key
-  @ManyToOne(() => TeamMember, (teamMember) => teamMember.users, { nullable: false })
-  @JoinColumn({ name: 'team_id' })
-  team: TeamMember;
-
-
-  // @Column({ type: 'boolean', default: false })
-  // email_verified: boolean;
-
-
-
-  // @Column({ type: 'timestamp', nullable: true })
-  // last_login: Date;
-
-  // @Column({ type: 'text', nullable: true })
-  // device_token: string;
-
-  
-  // @ManyToMany(() => Role, role => role.users)
-  // @JoinTable({
-  //   name: 'user_roles',
-  //   joinColumn: { name: 'user_id', referencedColumnName: 'id' },
-  //   inverseJoinColumn: { name: 'role_id', referencedColumnName: 'id' }
-  // })
-  // roles: Role[];
-
-//   @ManyToMany(() => Permission, (permission) => permission.users, { eager: true }) // Optional: eager loading
-// @JoinTable({
-//   name: 'user_permissions',
-//   joinColumn: { name: 'user_id', referencedColumnName: 'id' },
-//   inverseJoinColumn: { name: 'permission_id', referencedColumnName: 'id' },
-// })
-// permissions: Permission[];
-
-// @OneToOne(() => Staff, (staff) => staff.user)
-// staff: Staff;
 
 
 }

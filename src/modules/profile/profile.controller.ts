@@ -13,13 +13,13 @@ export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
 
 //   @UseGuards(JwtAuthGuard)
-@Get()
-@UseGuards(AuthGuard('jwt')) // Ensure the user is authenticated
-@ApiOkResponse({ description: 'Fetch logged-in user profile', type: ProfileDto })
-async getProfile(@Req() req): Promise<ProfileDto> {
-  const userId = req.user.user_id;
-  const user = await this.profileService.getProfile(userId);
-  return new ProfileDto(user, user?.team);
-}
+// @Get()
+// @UseGuards(AuthGuard('jwt')) // Ensure the user is authenticated
+// @ApiOkResponse({ description: 'Fetch logged-in user profile', type: ProfileDto })
+// async getProfile(@Req() req): Promise<ProfileDto> {
+//   const userId = req.user.user_id;
+//   const user = await this.profileService.getProfile(userId);
+//   return new ProfileDto(user, user?.team);
+// }
 
 }

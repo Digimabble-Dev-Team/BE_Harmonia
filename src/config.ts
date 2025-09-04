@@ -16,7 +16,7 @@ export const databaseConfig: IDatabaseConfig = Object.freeze({
     port: process.env.DB_PORT_LOCAL,
     dialect: process.env.DB_DIALECT_LOCAL,
     frontEndBaseUrl: process.env.FRONTEND_FORGET_URL_LOCAL,
-    ssl: false,
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false, 
   },
   development: {
     username: process.env.DB_USER_DEV,
@@ -25,7 +25,8 @@ export const databaseConfig: IDatabaseConfig = Object.freeze({
     host: process.env.DB_HOST_DEV,
     port: process.env.DB_PORT_DEV,
     dialect: process.env.DB_DIALECT_DEV,
-    frontEndBaseUrl: process.env.FRONTEND_FORGET_URL_DEV
+    frontEndBaseUrl: process.env.FRONTEND_FORGET_URL_DEV,
+    ssl: { rejectUnauthorized: false },
   },
   staging: {
     username: process.env.DB_USER_STAGING,
@@ -34,7 +35,8 @@ export const databaseConfig: IDatabaseConfig = Object.freeze({
     host: process.env.DB_HOST_STAGING,
     port: process.env.DB_PORT_STAGING,
     dialect: process.env.DB_DIALECT_STAGING,
-    frontEndBaseUrl: process.env.FRONTEND_FORGET_URL_STAGING
+    frontEndBaseUrl: process.env.FRONTEND_FORGET_URL_STAGING,
+    ssl: { rejectUnauthorized: false },
   },
   production: {
     username: process.env.DB_USER_DEV,

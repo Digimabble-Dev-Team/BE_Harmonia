@@ -4,7 +4,7 @@ import fs from "fs";
 import { PRODUCTION } from './src/core/constants';
 export function setupSwagger(app: INestApplication, type: string) {
     const options = new DocumentBuilder()
-        .setTitle('Anima API')
+        .setTitle('HARMONIA API')
         .setDescription('API Documentation')
         .setVersion('1.0')
         .addBearerAuth()

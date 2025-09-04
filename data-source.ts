@@ -8,7 +8,7 @@ import { Therapist } from './src/modules/therapist/entities/therapist.entity';
 // import { Staff } from './src/modules/StaffType/entities/staff.entity';
 import { Role } from 'src/modules/roles/entities/role.entity';
 import { Permission } from 'src/modules/permissions/entities/permission.entity';
-// import User from '../BE_healthcare_CRM/src/modules/users/entities/user.entity';
+ import User from 'src/modules/users/entities/user.entity';
 // import { SocialLinks } from '../BE_healthcare_CRM/src/modules/social-links/entities/social-links.entity';
 import { Menu } from 'src/modules/menus/entities/menu.entity';
 import { Branch } from 'src/modules/branches/entities/branch.entity';
@@ -24,18 +24,18 @@ export const AppDataSource = new DataSource({
   password: DBconfig.password,
   database: DBconfig.database,
   entities: [
-    Patient,
-    Address,
-    Therapist,
+    // Patient,
+    // Address,
+    // Therapist,
     // Staff,
-    Role,
-    Permission,
-    // User,
+    // Role,
+    // Permission,
+    User,
     // SocialLinks,
-    Menu,
-    Branch,
+    // Menu,
+    // Branch,
     Token,
-    TeamMember,
+    // TeamMember,
    // `${__dirname}/src/modules/**/entities/*.entity{.ts,.js}`
   ],
   migrations: ['src/migrations/*{.ts,.js}'],

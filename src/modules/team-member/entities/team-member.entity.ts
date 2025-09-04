@@ -84,8 +84,8 @@ export class TeamMember {
   @Column({ type: 'timestamp', nullable: true })
   deleted_at?: Date;
 
-  @OneToMany(() => User, (user) => user.team)
-  users: User[];
+  // @OneToMany(() => User, (user) => user.team)
+  // users: User[];
 
 
 }

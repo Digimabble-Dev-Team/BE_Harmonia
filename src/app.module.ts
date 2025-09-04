@@ -18,7 +18,7 @@ import { OrdersModule } from './modules/orders/orders.module';
 // import { AgentsModule } from './modules/agents/agents.module';
 import { MenusModule } from './modules/menus/menus.module';
 import { RolesModule } from './modules/roles/roles.module';
-import { PermissionsModule } from './modules/permissions/permissions.module';
+// import { PermissionsModule } from './modules/permissions/permissions.module';
 import { LeadsModule } from './modules/leads/leads.module';
 import { LocationModule } from './modules/location/location.module';
 import { SocialLinks } from './modules/social-links/entities/social-links.entity';
@@ -56,7 +56,8 @@ console.log('env--->', DBconfig.host, DBconfig.port, DBconfig.username, DBconfig
           entities: [`${__dirname}../../**/**.entity{.ts,.js}`],
           synchronize: false,
           logging: true,
-          ssl: {rejectUnauthorized: false},
+          // ssl: {rejectUnauthorized: false},
+           ssl: process.env.NODE_ENV === 'local' ? false : { rejectUnauthorized: false },
         }
     ),
     ConfigModule.forRoot({ isGlobal: true }),
@@ -73,7 +74,7 @@ console.log('env--->', DBconfig.host, DBconfig.port, DBconfig.username, DBconfig
     OrdersModule,
     // AgentsModule,
     MenusModule,
-    PermissionsModule,
+    // PermissionsModule,
     RolesModule,
     LeadsModule,
     LocationModule,
